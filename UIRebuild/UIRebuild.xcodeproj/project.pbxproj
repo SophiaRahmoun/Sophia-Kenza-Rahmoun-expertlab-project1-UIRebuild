@@ -45,6 +45,11 @@
 			path = UIRebuildUITests;
 			sourceTree = "<group>";
 		};
+		84AD10E32E9E7E6D007061C0 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 		84AD10AB2E9E35BF007061C0 = {
 			isa = PBXGroup;
 			children = (
+				84AD10E32E9E7E6D007061C0 /* Fonts */,
 				84AD10B62E9E35BF007061C0 /* UIRebuild */,
 				84AD10C92E9E35C1007061C0 /* UIRebuildTests */,
 				84AD10D32E9E35C1007061C0 /* UIRebuildUITests */,
@@ -109,6 +115,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				84AD10B62E9E35BF007061C0 /* UIRebuild */,
+				84AD10E32E9E7E6D007061C0 /* Fonts */,
 			);
 			name = UIRebuild;
 			packageProductDependencies = (

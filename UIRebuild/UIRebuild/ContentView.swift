@@ -1,61 +1,68 @@
-//
-//  ContentView.swift
-//  UIRebuild
-//
-//  Created by admin on 14/10/2025.
-//
-
 import SwiftUI
-import SwiftData
+import MapKit
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 50.8503, longitude: 4.3517),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        ZStack {
+            Map(coordinateRegion: $region)
+                .ignoresSafeArea()
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("2 Bikes around you")
+                                           .font(AppTypography.h2)
+                                           .font(.headline)
+                                           .foregroundColor(Color(red: 247/255, green: 242/255, blue: 242/255))
+                                           .frame(maxWidth: .infinity)
+                                           .multilineTextAlignment(.center)
+                                       Spacer()
+                    Button(action: {
+                        // Hamburger menu action
+                    }) {
+                        Image(systemName: "line.3.horizontal")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color(red: 247/255, green: 242/255, blue: 242/255))
                     }
+                    .padding(.top, 20)
+                    .padding(.trailing, 20)
                 }
-                .onDelete(perform: deleteItems)
+                Spacer()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
+            VStack {
+                Spacer(minLength: 0)
+                RoundedRectangle(cornerRadius: 40)
+                    .fill(Color(red: 247/255, green: 242/255, blue: 242/255))
+                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height / 5)
+                    .overlay(
+                        VStack {
+                            Text("Become Villo'er")
+                                .foregroundColor(.black)
+                                .font(AppTypography.h2)
+                            Button(action: {
+                                // Button action here
+                            }) {
+                                Text("Log In")
+                                    .foregroundColor(.black)
+                                    .padding()
+                                    .frame(maxWidth: 200)
+                                    .background(Color.yellow)
+                                    .cornerRadius(30)
+                            }
+                        }
+                    )
             }
-        } detail: {
-            Text("Select an item")
+            .ignoresSafeArea()
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .preferredColorScheme(.dark)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
