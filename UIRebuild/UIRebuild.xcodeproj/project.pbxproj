@@ -29,9 +29,22 @@
 		84AD10D02E9E35C1007061C0 /* UIRebuildUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIRebuildUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		84F9CDBB2E9EDD7100A0DD08 /* Exceptions for "UIRebuild" folder in "UIRebuild" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 84AD10B32E9E35BF007061C0 /* UIRebuild */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		84AD10B62E9E35BF007061C0 /* UIRebuild */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				84F9CDBB2E9EDD7100A0DD08 /* Exceptions for "UIRebuild" folder in "UIRebuild" target */,
+			);
 			path = UIRebuild;
 			sourceTree = "<group>";
 		};
@@ -43,11 +56,6 @@
 		84AD10D32E9E35C1007061C0 /* UIRebuildUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = UIRebuildUITests;
-			sourceTree = "<group>";
-		};
-		84AD10E32E9E7E6D007061C0 /* Fonts */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -80,7 +88,6 @@
 		84AD10AB2E9E35BF007061C0 = {
 			isa = PBXGroup;
 			children = (
-				84AD10E32E9E7E6D007061C0 /* Fonts */,
 				84AD10B62E9E35BF007061C0 /* UIRebuild */,
 				84AD10C92E9E35C1007061C0 /* UIRebuildTests */,
 				84AD10D32E9E35C1007061C0 /* UIRebuildUITests */,
@@ -115,7 +122,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				84AD10B62E9E35BF007061C0 /* UIRebuild */,
-				84AD10E32E9E7E6D007061C0 /* Fonts */,
 			);
 			name = UIRebuild;
 			packageProductDependencies = (
@@ -405,6 +411,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UIRebuild/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIRebuild/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -433,6 +440,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UIRebuild/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIRebuild/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

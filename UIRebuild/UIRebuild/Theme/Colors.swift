@@ -8,6 +8,6 @@
 import SwiftUI
 
 extension Color {
-    static let appBackground = Color("AppBackground") // (#F7F2F2)
-    static let appYellow = Color("AppYellow") // ton jaune bouton
+    static let appBackground = Color("AppBackground")
+    static let appYellow = Color("AppYellow")
 }
