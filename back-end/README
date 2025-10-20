@@ -1,0 +1,98 @@
+# Villo Brussels - Backend API
+
+This is the backend for my personal rebuild of the **Villo Brussels** bike app.  
+It was created as part of my Expertlab course at Erasmushogeschool Brussel, where I chose to specialize as a Software Engineer - iOS Developer.
+
+The goal of this project is to rebuild the original app from scratch, with authentication, user preferences, and data tracking.
+
+## FRONTEND
+
+## 🔧 Tech Stack
+
+- **Node.js**
+- **Express**
+- **MongoDB**
+- **Mongoose**
+- **JWT** (JSON Web Tokens)
+- **Dotenv**
+- **CORS**
+
+## ✨ Features
+
+- User Registration (`/api/auth/register`)
+- User Login with Token (`/api/auth/login`)
+- Auth Middleware with JWT
+- Get User Favorites (`/api/favorites`)
+- Add to Favorites (POST)
+- Save History (bike usage) (`/api/history`)
+- See Subscription Info (`/api/subscription`)
+- All protected routes require a valid token
+
+## 📁 Folder Structure
+
+back-end/
+├── controllers/
+│ └── authController.js
+├── middleware/
+│ └── verifyToken.js
+├── models/
+│ ├── User.js
+│ ├── Favorite.js
+│ ├── History.js
+├── routes/
+│ ├── authRoutes.js
+│ ├── favoritesRoutes.js
+│ ├── historyRoutes.js
+│ └── subscriptionRoutes.js
+├── .env
+├── index.js
+└── package.json
+
+## 🚀 How to Use
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/yourusername/villo-backend.git
+   cd villo-backend
+
+   ```
+
+2. Install dependencies
+
+   > npm install
+
+3. Create a .env file
+   MONGO_URI=your_mongo_connection_string
+   JWT_SECRET=your_secret_key
+   PORT=4000
+
+4. Start server
+
+   > npm run dev
+
+5. Test API with POSTMAN
+   • Register: POST /api/auth/register
+   • Login: POST /api/auth/login
+   • Use returned token (Bearer) to access protected routes
+
+## Why this project?
+
+In Expertlab, I wanted to challenge myself by becoming more independent in backend development.
+Building this backend helped me:
+• Understand how Express and MongoDB work together
+• Learn about tokens and security
+• Make my iOS app more dynamic and personalized
+
+## 📚 Sources
+
+- https://www.w3schools.com/nodejs/nodejs_api_auth.asp — used for auth in Node
+- https://dvmhn07.medium.com/jwt-authentication-in-node-js-a-practical-guide-c8ab1b432a49 used to understand how to work with tokens
+- https://stackoverflow.com/questions/61401475/why-is-type-module-in-package-json-file — used to debug error with type: "module"
+- https://singh-sandeep.medium.com/best-practices-for-using-cors-in-node-js-a-complete-guide-3fc7974b39be — used to understand CORS best practices
+- https://www.w3schools.com/nodejs/nodejs_middleware.asp — used to understand middleware and how to apply it
+- https://www.youtube.com/watch?v=dLxCpd3IGys — used to implement JWT tokens in Postman
+- https://stackoverflow.com/questions/12481639/remove-file-from-latest-commit — used to remove .env from GitHub
+- https://www.youtube.com/watch?v=TrLMm4BCdlg — used to apply ESM syntax
+- https://www.geeksforgeeks.org/node-js/how-to-create-and-verify-jwts-with-node-js/ — used to verify token
+- Copilot : used for overall bug fixes and code suggestions throughout development
