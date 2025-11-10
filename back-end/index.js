@@ -12,6 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/api/subscription", subscriptionRoutes);
 app.use("/api/history", historyRoutes);
 app.use("/api/favorites", favoritesRoutes);

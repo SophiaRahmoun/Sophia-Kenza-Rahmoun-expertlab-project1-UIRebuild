@@ -29,6 +29,8 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+	console.log("Login:", req.body)
+	
 	const { username, password } = req.body;
 	const user = await User.findOne({ username });
 
@@ -40,11 +42,11 @@ router.post("/login", async (req, res) => {
 	const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
 		expiresIn: "7d",
 	});
+	if (!username || !password)
+		return res.status(400).json({ message: "Missing fields" });
 
 	res.json({ token, user: { id: user._id, username: user.username } });
 });
-
-
 
 router.get("/", (req, res) => {
 	res.send("API Auth workss !");
