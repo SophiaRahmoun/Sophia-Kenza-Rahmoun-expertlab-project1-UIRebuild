@@ -29,10 +29,13 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-	console.log("Login:", req.body)
-	
+	console.log("Login:", req.body);
+
 	const { username, password } = req.body;
 	const user = await User.findOne({ username });
+	
+	if (!username || !password)
+		return res.status(400).json({ message: "Missing fields" });
 
 	if (!user) return res.status(404).json({ message: "User not found" });
 
@@ -42,10 +45,13 @@ router.post("/login", async (req, res) => {
 	const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
 		expiresIn: "7d",
 	});
-	if (!username || !password)
-		return res.status(400).json({ message: "Missing fields" });
 
-	res.json({ token, user: { id: user._id, username: user.username } });
+	res.status(201).json({
+		id: newUser._id,
+		username: newUser.username,
+		email: "",
+		token,
+	});
 });
 
 router.get("/", (req, res) => {
