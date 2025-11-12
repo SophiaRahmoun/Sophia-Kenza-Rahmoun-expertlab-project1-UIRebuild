@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var mapViewModel = MapViewModel()
+
     var body: some View {
-        MainMapView()
+        ZStack {
+            MapConnectedView()
+                .environmentObject(mapViewModel)
+
+                    if mapViewModel.isFilterPresented {
+                        FilterView()
+                            .environmentObject(mapViewModel)
+                            .transition(.move(edge: .bottom))
+                    }
+                }
+       
        
     }
 }

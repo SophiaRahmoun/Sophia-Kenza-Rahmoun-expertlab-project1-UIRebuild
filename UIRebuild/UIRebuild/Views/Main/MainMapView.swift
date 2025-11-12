@@ -76,3 +76,8 @@ struct MainMapView: View {
 
     }
 }
+
+#Preview {
+    MainMapView()
+}
+

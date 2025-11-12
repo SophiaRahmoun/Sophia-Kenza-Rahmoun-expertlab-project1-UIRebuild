@@ -9,10 +9,11 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     @Published var isLoggedIn: Bool = false
+    init() {
+           if let _ = UserDefaults.standard.string(forKey: "authToken") {
+              isLoggedIn = true}
+           }
+       }
 
-    func logIn() {
-        isLoggedIn = true}
 
-    func logOut() {
-        isLoggedIn = false}
-}
+

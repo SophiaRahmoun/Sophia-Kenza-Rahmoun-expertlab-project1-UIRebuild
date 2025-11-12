@@ -105,14 +105,26 @@ struct LoginView: View {
                             viewModel.login()
                         } label: {
                             Text("Continue")
+                            
                                 .foregroundColor(.black)
                                 .fontWeight(.bold)
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(Color.yellow)
                                 .cornerRadius(30)
+                           
+                            }
+                        .padding(.top, 20)
+                        if let errorMessage = viewModel.errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.footnote)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 10)
+                                .frame(maxWidth: .infinity)
                         }
-                        .padding(.top, 30)
+                        
+                        
                     }
                     .padding(.horizontal, 30)
 
@@ -121,8 +133,13 @@ struct LoginView: View {
                 .navigationDestination(isPresented: $navigateToSignUp) {
                     SignUpView()
                 }
+                .navigationDestination(isPresented: $viewModel.shouldNavigateToMainView) {
+                    MapConnectedView()
+                }
             }
         }
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 
