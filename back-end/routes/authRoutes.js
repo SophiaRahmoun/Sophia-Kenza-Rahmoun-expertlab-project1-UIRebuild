@@ -29,14 +29,14 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+	try {
 	console.log("Login:", req.body);
 
 	const { username, password } = req.body;
-	const user = await User.findOne({ username });
-	
 	if (!username || !password)
 		return res.status(400).json({ message: "Missing fields" });
 
+	const user = await User.findOne({ username });
 	if (!user) return res.status(404).json({ message: "User not found" });
 
 	const isMatch = await bcrypt.compare(password, user.password);
@@ -47,11 +47,16 @@ router.post("/login", async (req, res) => {
 	});
 
 	res.status(201).json({
-		id: newUser._id,
-		username: newUser.username,
-		email: "",
+		id: user._id,
+		username: user.username,
+		email: user.email || "",
 		token,
 	});
+	} catch (err) {
+		console.error("Login error:", err);
+		res.status(500).json({ message: "Server error", error: err.message });
+	}
+
 });
 
 router.get("/", (req, res) => {
