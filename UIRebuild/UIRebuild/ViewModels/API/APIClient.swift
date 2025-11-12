@@ -4,6 +4,7 @@
 //
 //  Created by admin on 07/11/2025.
 //
+
 import Foundation
 
 struct APIClient {
@@ -15,7 +16,7 @@ struct APIClient {
             return
         }
 
-        let body = [
+        let body: [String: String] = [
             "username": username,
             "password": password
         ]
@@ -50,15 +51,13 @@ struct APIClient {
                     return
                 }
 
-                // 🔍 Print raw data as string
                 if let jsonString = String(data: data, encoding: .utf8) {
-                    print(" Raw JSON string:", jsonString)
-                    print(" Raw JSON string:", jsonString)
+                    print(" Raw JSON received in string:", jsonString)
+                    print(jsonString)
                 } else {
                     print(" Could not decode data to UTF-8 string.")
                 }
 
-                // 🧠 Decode user object
                 do {
                     let user = try JSONDecoder().decode(User.self, from: data)
                     print(" Successfully decoded user:", user)
@@ -89,5 +88,7 @@ struct APIClient {
     enum APIError: Error {
         case invalidURL
         case noData
+        case noResponse
+        case invalidCredentials
     }
 }

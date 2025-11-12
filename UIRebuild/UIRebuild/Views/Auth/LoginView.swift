@@ -122,6 +122,9 @@ struct LoginView: View {
                                 .multilineTextAlignment(.center)
                                 .padding(.top, 10)
                                 .frame(maxWidth: .infinity)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true) 
+
                         }
                         
                         

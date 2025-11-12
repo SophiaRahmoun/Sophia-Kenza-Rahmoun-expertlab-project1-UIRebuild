@@ -12,6 +12,7 @@ class SessionManager: ObservableObject {
     static let shared = SessionManager()
     
     @Published var isLoggedIn: Bool = false
+    @Published var currentUser: User?
 
     private init() {
         if let _ = UserDefaults.standard.string(forKey: "authToken") {

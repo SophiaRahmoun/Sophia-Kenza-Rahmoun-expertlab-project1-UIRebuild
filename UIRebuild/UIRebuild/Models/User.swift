@@ -11,9 +11,9 @@ struct User: Codable {
     let email: String?
     let token: String
     enum CodingKeys: String, CodingKey {
-          case id = "_id"
-          case username
-          case email
-          case token
+        case id
+        case username
+        case email
+        case token
       }
 }
