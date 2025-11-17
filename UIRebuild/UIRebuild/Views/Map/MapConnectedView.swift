@@ -50,4 +50,5 @@ struct MapConnectedView: View {
 
 #Preview {
     MapConnectedView()
+        .environmentObject(MapViewModel())
 }
