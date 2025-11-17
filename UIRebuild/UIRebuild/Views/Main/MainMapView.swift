@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MainMapView: View {
+    @StateObject var mapViewModel = MapViewModel()
+
     @State private var showLogin = false
     
     @State private var region = MKCoordinateRegion(

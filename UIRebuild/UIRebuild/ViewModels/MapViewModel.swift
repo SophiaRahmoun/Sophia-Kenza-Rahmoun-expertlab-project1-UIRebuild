@@ -18,6 +18,7 @@ class MapViewModel: ObservableObject {
     @Published var isFilterPresented = false
     
     @Published var selectedFilters: Set<FilterOption> = []
+    
 
     func recenterMap() {
         // TODO: replace w users loc

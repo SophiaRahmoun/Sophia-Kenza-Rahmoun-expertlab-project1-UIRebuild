@@ -138,6 +138,7 @@ struct LoginView: View {
                 }
                 .navigationDestination(isPresented: $viewModel.shouldNavigateToMainView) {
                     MapConnectedView()
+                        .environmentObject(MapViewModel())
                 }
             }
         }
