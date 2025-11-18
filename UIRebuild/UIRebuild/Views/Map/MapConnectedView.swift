@@ -15,13 +15,16 @@ struct MapConnectedView: View {
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapViewModel.region)
-                .ignoresSafeArea()
-                .onTapGesture {
-                    withAnimation {
-                        showMenu = false
-                    }
-                }
+            Map(
+                coordinateRegion: $mapViewModel.region,
+                annotationItems: mapViewModel.stations
+            ) { station in
+                MapMarker(
+                    coordinate: station.geo_point_2d.coordinate,
+                    tint: .yellow
+                )
+            }
+            .ignoresSafeArea()
             
             VStack {
                 HStack {

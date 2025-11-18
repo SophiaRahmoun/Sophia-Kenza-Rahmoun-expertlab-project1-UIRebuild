@@ -14,16 +14,38 @@ class MapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     
+    
     @Published var selectedFilter: FilterOption? = nil
     @Published var isFilterPresented = false
     
     @Published var selectedFilters: Set<FilterOption> = []
     
+    @Published var stations: [Station] = []
+    private let stationService = StationService()
+    
+    init() {
+           loadStations()
+       }
+
+    func loadStations() {
+        stationService.fetchStations { [weak self] (result: Swift.Result<[Station], Error>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let stations):
+                    self?.stations = stations
+                    print("Loaded Villo stations:", stations.count)
+                case .failure(let error):
+                    print("Error loading Villo stations:", error)
+                }
+            }
+        }
+    }
+    
 
     func recenterMap() {
-        // TODO: replace w users loc
-        region.center = CLLocationCoordinate2D(latitude: 50.8503, longitude: 4.3517)
-    }
+           region.center = CLLocationCoordinate2D(latitude: 50.8503, longitude: 4.3517)
+       }
+    
     func toggleFilter(_ filter: FilterOption) {
             if selectedFilters.contains(filter) {
                 selectedFilters.remove(filter)
