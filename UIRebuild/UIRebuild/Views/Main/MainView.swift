@@ -9,11 +9,15 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var mapViewModel = MapViewModel()
+    @StateObject var menuViewModel = MenuViewModel()
+
 
     var body: some View {
         ZStack {
             MapConnectedView()
                 .environmentObject(mapViewModel)
+                .environmentObject(menuViewModel)
+
 
                     if mapViewModel.isFilterPresented {
                         FilterView()

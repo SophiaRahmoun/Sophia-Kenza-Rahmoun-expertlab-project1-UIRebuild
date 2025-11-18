@@ -47,35 +47,31 @@ struct FilterView: View {
                                    }
 
                                    ForEach(FilterOption.allCases) { option in
+                                       Button {
+                                           mapViewModel.toggleFilter(option)
+                                       } label: {
+                                           HStack(spacing: 40) {
+                                               RoundedRectangle(cornerRadius: 3)
+                                                   .stroke(Color.black, lineWidth: 1)
+                                                   .background(
+                                                       RoundedRectangle(cornerRadius: 3)
+                                                           .fill(
+                                                               mapViewModel.selectedFilters.contains(option)
+                                                               ? Color.yellow
+                                                               : Color.white
+                                                           )
+                                                   )
+                                                   .frame(width: 14, height: 14)
 
-                                                             Button {
-                                                                 mapViewModel.toggleFilter(option)
-                                                             } label: {
+                                               Text(option.rawValue)
+                                                   .foregroundColor(.black)
+                                                   .font(.body)
 
-                                                                 HStack(spacing: 40) {
-
-                                                                     RoundedRectangle(cornerRadius: 3)
-                                                                         .stroke(Color.black, lineWidth: 1)
-                                                                         .background(
-                                                                             RoundedRectangle(cornerRadius: 3)
-                                                                                 .fill(
-                                                                                    mapViewModel.selectedFilters.contains(option)
-                                                                                     ? Color.yellow
-                                                                                     : Color.white
-                                                                                 )
-                                                                         )
-                                                                         .frame(width: 14, height: 14)
-
-                                                                  
-                                                                     Text(option.rawValue)
-                                                                         .foregroundColor(.black)
-                                                                         .font(.body)
-
-                                                                     Spacer()
-                                                                 }
-                                                                 .padding(.horizontal, 20)
-                                                             }
-                                                         }
+                                               Spacer()
+                                           }
+                                           .padding(.horizontal, 20)
+                                       }
+                                   }
                                    Spacer()
                                }
                                .padding()
