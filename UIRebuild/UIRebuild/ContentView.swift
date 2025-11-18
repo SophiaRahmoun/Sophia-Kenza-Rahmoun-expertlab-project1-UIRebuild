@@ -4,6 +4,8 @@ import MapKit
 struct ContentView: View {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var sessionManager = SessionManager.shared
+    @StateObject var mapViewModel = MapViewModel()
+
 
     var body: some View {
            Group {
@@ -16,6 +18,8 @@ struct ContentView: View {
                }
            }
            .environmentObject(sessionManager)
+           .environmentObject(mapViewModel)
+
     }
 }
 

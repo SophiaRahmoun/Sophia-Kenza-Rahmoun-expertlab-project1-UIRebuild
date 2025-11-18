@@ -102,6 +102,7 @@ struct MapConnectedView: View {
                         .shadow(radius: 10)
                         .overlay(
                             MenuView()
+                                .environmentObject(menuViewModel)
                         )
                         .transition(.move(edge: .trailing))
                 }
@@ -130,6 +131,7 @@ struct MapConnectedView: View {
                 StationAlertView()
             }
         }
+    
 }
 
 #Preview {
