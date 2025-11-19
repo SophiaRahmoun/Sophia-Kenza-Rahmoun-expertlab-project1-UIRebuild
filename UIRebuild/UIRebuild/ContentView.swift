@@ -12,13 +12,19 @@ struct ContentView: View {
                if sessionManager.isLoggedIn {
                    MainView()
                        .environmentObject(authViewModel)
+                       .environmentObject(sessionManager)
+
                } else {
                    MainMapView()
                        .environmentObject(authViewModel)
+                       .environmentObject(sessionManager)
+                       .environmentObject(mapViewModel)
+
                }
            }
            .environmentObject(sessionManager)
            .environmentObject(mapViewModel)
+           .environmentObject(authViewModel)
 
     }
 }

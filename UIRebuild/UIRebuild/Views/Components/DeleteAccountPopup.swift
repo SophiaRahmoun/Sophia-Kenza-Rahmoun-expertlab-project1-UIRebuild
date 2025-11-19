@@ -63,8 +63,8 @@ struct DeleteAccountPopup: View {
                     VStack(spacing: 22) {
                         
                         Button {
-                            // TODO delete action
-                        } label: {
+                            SessionManager.shared.logout()
+                                isPresented = false                        } label: {
                             Text("Yes")
                                 .font(AppTypography.p.bold())
                                 .foregroundColor(.black)

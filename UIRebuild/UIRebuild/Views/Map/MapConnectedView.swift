@@ -12,6 +12,7 @@ struct MapConnectedView: View {
     @EnvironmentObject var mapViewModel: MapViewModel
     @StateObject var menuViewModel = MenuViewModel()
     @State private var showMenu = false
+    @EnvironmentObject var session: SessionManager
     
     var body: some View {
         ZStack {

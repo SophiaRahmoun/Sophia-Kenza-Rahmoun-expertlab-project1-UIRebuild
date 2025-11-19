@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HelpView: View {
+    @EnvironmentObject var session: SessionManager
     @Environment(\.dismiss) var dismiss
     @State private var showReportInfo = false
     @State private var showDeletePopup = false
@@ -99,7 +100,7 @@ struct HelpView: View {
                             .cornerRadius(12)
                         }
                         
-                        Button {
+                        Button {    SessionManager.shared.logout()
                         } label: {
                             HStack {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
