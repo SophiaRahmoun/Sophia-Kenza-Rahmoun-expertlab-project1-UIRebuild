@@ -20,10 +20,22 @@ struct MapConnectedView: View {
                 coordinateRegion: $mapViewModel.region,
                 annotationItems: mapViewModel.stations
             ) { station in
-                MapMarker(
-                    coordinate: station.geo_point_2d.coordinate,
-                    tint: .yellow
-                )
+                MapAnnotation(
+                    coordinate: station.geo_point_2d.coordinate
+                ) {
+                    Button {
+                        mapViewModel.selectStation(station)
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .fill(Color.init(hex: "FFAE00"))
+                                .frame(width: 18, height: 18)
+
+                        
+                        }
+                        
+                    }
+                }
             }
             .ignoresSafeArea()
             
@@ -112,12 +124,25 @@ struct MapConnectedView: View {
                 }
                 .ignoresSafeArea()
             }
-        }
-        .sheet(item: $menuViewModel.selectedDestination) { destination in
-            destinationView(for: destination)
-        }
-        .preferredColorScheme(.dark)
-    }
+        
+        if mapViewModel.isReserveBikePresented,
+                    let station = mapViewModel.selectedStation {
+            
+                     StationReserveBikeView(station: station)
+                         .environmentObject(mapViewModel)
+                         .transition(.move(edge: .bottom))
+            
+           
+                 }
+             }
+
+             .sheet(item: $menuViewModel.selectedDestination) { destination in
+                 destinationView(for: destination)
+             }
+             .preferredColorScheme(.dark)
+         }
+
+
     @ViewBuilder
         private func destinationView(for destination: MenuDestination) -> some View {
             switch destination {
@@ -135,7 +160,7 @@ struct MapConnectedView: View {
                 StationAlertView()
             }
         }
-    
+
 }
 
 #Preview {

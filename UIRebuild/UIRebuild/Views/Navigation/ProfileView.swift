@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-import SwiftUI
 
 struct ProfileView: View {
     

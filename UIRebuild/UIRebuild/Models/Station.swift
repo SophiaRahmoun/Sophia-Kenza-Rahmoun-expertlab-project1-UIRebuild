@@ -15,6 +15,14 @@ struct StationResponse: Codable {
 
 struct Station: Codable, Identifiable {
     var id: String { villo_id }
+    
+    var bikes: [Bike] {
+        // Temporary mock generation
+        let count = Int.random(in: 3...bike_stands) // Rand av bikes
+        return (0..<count).map { _ in
+            Bike(type: Bool.random() ? .electric : .mechanical, isAvailable: true)
+        }
+    }
 
     let villo_id: String
     let name_fr: String?

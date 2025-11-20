@@ -21,7 +21,7 @@ class StationService {
             }
             
             guard let data = data else { return }
-            
+            print("RAW STATION JSON:", String(data: data, encoding: .utf8) ?? "NONE")
             do {
                 let decoded = try JSONDecoder().decode(StationResponse.self, from: data)
                 completion(.success(decoded.results))
