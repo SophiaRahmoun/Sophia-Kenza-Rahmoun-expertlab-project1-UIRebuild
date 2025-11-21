@@ -27,6 +27,11 @@ class MapViewModel: ObservableObject {
     @Published var stations: [Station] = []
     private let stationService = StationService()
     
+  
+
+    @Published var isBikeReservationPresented = false
+    @Published var selectedBikeType: BikeType? = nil
+    
     init() {
            loadStations()
        }
@@ -48,7 +53,7 @@ class MapViewModel: ObservableObject {
     func selectStation(_ station: Station) {
         selectedStation = station
         isReserveBikePresented = true
-        loadAvailability() // Load availability when station is selected
+        loadAvailability()
     }
 
     func recenterMap() {

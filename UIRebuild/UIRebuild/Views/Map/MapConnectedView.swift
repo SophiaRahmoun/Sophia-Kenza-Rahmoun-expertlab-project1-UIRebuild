@@ -125,23 +125,29 @@ struct MapConnectedView: View {
                 .ignoresSafeArea()
             }
         
-        if mapViewModel.isReserveBikePresented,
-                    let station = mapViewModel.selectedStation {
-            
-                     StationReserveBikeView(station: station)
-                         .environmentObject(mapViewModel)
-                         .transition(.move(edge: .bottom))
-            
-           
-                 }
-             }
+            if mapViewModel.isBikeReservationPresented,
+               let type = mapViewModel.selectedBikeType,
+               let station = mapViewModel.selectedStation {
 
-             .sheet(item: $menuViewModel.selectedDestination) { destination in
-                 destinationView(for: destination)
-             }
-             .preferredColorScheme(.dark)
-         }
+                ReserveBikeView(bikeType: type, station: station)
+                    .environmentObject(mapViewModel)
+                    .transition(.move(edge: .bottom))
 
+            } else if mapViewModel.isReserveBikePresented,
+                      let station = mapViewModel.selectedStation {
+
+                StationReserveBikeView(station: station)
+                    .environmentObject(mapViewModel)
+                    .transition(.move(edge: .bottom))
+            }
+                    }
+                    
+                    .sheet(item: $menuViewModel.selectedDestination) { destination in
+                        destinationView(for: destination)
+                    }
+                    
+                    .preferredColorScheme(.dark)
+                }
 
     @ViewBuilder
         private func destinationView(for destination: MenuDestination) -> some View {

@@ -22,3 +22,4 @@ struct PaymentMethodView: View {
 #Preview {
     PaymentMethodView()
 }
+

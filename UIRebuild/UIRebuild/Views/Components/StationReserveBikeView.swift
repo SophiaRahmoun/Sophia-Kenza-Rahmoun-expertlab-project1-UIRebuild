@@ -80,34 +80,35 @@ struct StationReserveBikeView: View {
                                 VStack(spacing: 16) {
                                     ForEach(0..<a.available_bikes, id: \.self) { _ in
 
-                                                                           let isElectric = Bool.random()
+                                       let isElectric = Bool.random()
 
-                                                                           HStack(spacing: 20) {
+                                       HStack(spacing: 20) {
 
-                                                                               Image(systemName: isElectric ? "bolt.fill" : "bicycle")
-                                                                                   .foregroundColor(Color(hex: "FFAE00"))
-                                                                                   .font(.system(size: 22))
+                                           Image(systemName: isElectric ? "bolt.fill" : "bicycle")
+                                               .foregroundColor(Color(hex: "FFAE00"))
+                                               .font(.system(size: 22))
 
-                                                                               Text(isElectric ? "Electric Bike" : "Mechanical Bike")
-                                                                                   .font(AppTypography.h3)
-                                                                                   .foregroundColor(.black)
+                                           Text(isElectric ? "Electric " : "Mechanical")
+                                               .font(AppTypography.h3)
+                                               .foregroundColor(.black)
 
-                                                                               Spacer()
+                                           Spacer()
 
-                                                                               Button {
-                                                                                   print("Choose bike!")
-                                                                               } label: {
-                                                                                   Text("Choose this bike")
-                                                                                       .font(AppTypography.p.bold())
-                                                                                       .foregroundColor(.white)
-                                                                                       .padding(.vertical, 10)
-                                                                                       .padding(.horizontal, 18)
-                                                                                       .background(Color.black)
-                                                                                       .cornerRadius(20)
-                                                                               }
-                                                                           }
-                                                                           .padding(.horizontal, horizontalPadding)
-                                                                       }
+                                           Button {
+                                               mapViewModel.selectedBikeType = isElectric ? .electric : .mechanical
+                                               mapViewModel.isBikeReservationPresented = true
+                                           } label: {
+                                               Text("Choose this bike")
+                                                   .font(AppTypography.p.bold())
+                                                   .foregroundColor(.white)
+                                                   .padding(.vertical, 10)
+                                                   .padding(.horizontal, 18)
+                                                   .background(Color.black)
+                                                   .cornerRadius(20)
+                                           }
+                                       }
+                                       .padding(.horizontal, horizontalPadding)
+                                   }
 
                                                                      
                                                                        if a.available_bikes == 0 {
