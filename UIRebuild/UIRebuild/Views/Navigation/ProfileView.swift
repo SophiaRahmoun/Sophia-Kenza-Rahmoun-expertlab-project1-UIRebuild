@@ -109,7 +109,7 @@ struct ProfileView: View {
         case .subscription:
             SubscriptionView()
         case .payment:
-            PaymentMethodView()
+            PaymentMethodView(selectedPlan: SubscriptionPlan(name: "Monthly", price: "9.99", priceSuffix: "/month", description: "Unlimited rides all month.", allowsQuantity: false))
         case .favorites:
             FavoriteStationsView()
         case .notifications:

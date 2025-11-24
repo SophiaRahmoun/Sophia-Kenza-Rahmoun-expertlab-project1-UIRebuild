@@ -9,4 +9,8 @@ import Foundation
 struct SubscriptionPlan: Identifiable {
     let id = UUID()
     let name: String
+    let price: String
+       let priceSuffix: String?  //month , day etc
+       let description: String
+       let allowsQuantity: Bool
 }

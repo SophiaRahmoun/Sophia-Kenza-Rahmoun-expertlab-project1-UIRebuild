@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ChooseSubscriptionView: View {
+    @State private var isShowingPayment = false
     
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = ChooseSubscriptionViewModel()
@@ -85,16 +86,90 @@ struct ChooseSubscriptionView: View {
                         ForEach(Array(viewModel.plans.enumerated()), id: \.offset) { index, plan in
                             
                             RoundedRectangle(cornerRadius: 20)
-                                .fill(Color(hex: "F7F2F2"))
+                                .fill(Color(hex: "1D1B20"))
                                 .frame(
                                     width: cardWidth,
-                                    height: geo.size.height * 0.98
+                                    height: geo.size.height * 1.2
                                 )
                                 .shadow(color: .black.opacity(0.1), radius: 6)
                                 .overlay(
-                                    Text(plan.name)
-                                        .font(AppTypography.h2)
-                                        .foregroundColor(.black)
+                                    VStack(alignment: .leading, spacing: 34) {
+
+                                        // TITLE
+                                        Text(plan.name)
+                                            .font(AppTypography.h1)
+                                            .foregroundColor(Color(hex: "FFAE00"))
+                                            .padding(.top, 30)
+                                            .padding(.horizontal, 22)
+
+                                        // PRICE ROW
+                                        HStack {
+                                            Text(plan.price + "€")
+                                                .font(AppTypography.h2)
+                                                .foregroundColor(.white)
+
+                                            if let suffix = plan.priceSuffix {
+                                                Text(suffix)
+                                                    .font(AppTypography.p)
+                                                    .foregroundColor(.white.opacity(0.75))
+                                            }
+
+                                            Spacer()
+
+                                            // QUANTITY SELECTOR ONLY FOR 1 DAY TICKET
+                                            if plan.allowsQuantity {
+                                                HStack(spacing: 14) {
+                                                    Button {
+                                                        if viewModel.quantity > 1 { viewModel.quantity -= 1 }
+                                                    } label: {
+                                                        Image(systemName: "minus.circle.fill")
+                                                            .font(.system(size: 28))
+                                                            .foregroundColor(.white)
+                                                    }
+
+                                                    Text("\(viewModel.quantity)")
+                                                        .font(AppTypography.h2)
+                                                        .foregroundColor(.white)
+                                                        .frame(width: 40)
+
+                                                    Button {
+                                                        viewModel.quantity += 1
+                                                    } label: {
+                                                        Image(systemName: "plus.circle.fill")
+                                                            .font(.system(size: 28))
+                                                            .foregroundColor(Color(hex: "FFAE00"))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .padding(.horizontal, 22)
+
+                                        // DESCRIPTION
+                                        Text(plan.description)
+                                            .font(AppTypography.p)
+                                            .foregroundColor(.white.opacity(0.85))
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .padding(.horizontal, 22)
+
+                                        Spacer()
+
+                                        
+                                        Button {
+                                            isShowingPayment = true
+
+                                        } label: {
+                                            Text("Choose this plan")
+                                                .font(AppTypography.h3.bold())
+                                                .foregroundColor(.black)
+                                                .padding(.vertical, 12)
+                                                .frame(maxWidth: .infinity)
+                                                .background(Color(hex: "FFAE00"))
+                                                .cornerRadius(50)
+                                                .padding(.horizontal, 22)
+                                        }
+
+                                        Spacer()
+                                    }
                                 )
                                 .animation(.spring(), value: viewModel.currentIndex)
                         }
@@ -126,6 +201,9 @@ struct ChooseSubscriptionView: View {
                 .frame(height: 380)
                 
                 Spacer()
+            }  .sheet(isPresented: $isShowingPayment) {
+                PaymentMethodView(selectedPlan: viewModel.plans[viewModel.currentIndex])
+          
             }
         }
     }

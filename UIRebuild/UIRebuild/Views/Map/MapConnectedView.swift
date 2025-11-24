@@ -155,7 +155,7 @@ struct MapConnectedView: View {
             case .profile:
                 ProfileView()
             case .subscription:
-                SubscriptionView()
+                MySubscriptionView()
             case .history:
                 HistoryView()
             case .help:
